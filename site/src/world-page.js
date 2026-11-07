@@ -25,6 +25,9 @@ const STALE_SECONDS = 120;
 // squeekpulse.xyz, and the footer's link there carries the visitor's language.
 const ROOT = "/";
 const mainSite = () => crossSiteHref(SITE_URL);
+// The whitepaper's web version, one static page per language
+// (site/public/whitepaper/, written by site/whitepaper/render.mjs).
+const WHITEPAPER = { en: `${ROOT}whitepaper/en/`, zh: `${ROOT}whitepaper/` };
 
 const en = {
   pageTitle: "Squeek Pet World",
@@ -60,6 +63,7 @@ const en = {
   ago: (s) => (s < 5 ? "just now" : s < 60 ? `${s}s ago` : s < 3600 ? `${Math.floor(s / 60)}m ago` : `${Math.floor(s / 3600)}h ago`),
   noScript: "Squeek Pet World needs JavaScript.",
   independent: "Independent community project · Not an official SqueekChain product",
+  whitepaper: "Whitepaper",
   backHome: "Back to Squeek Pulse",
 };
 
@@ -97,6 +101,7 @@ const zh = {
   ago: (s) => (s < 5 ? "刚刚" : s < 60 ? `${s} 秒前` : s < 3600 ? `${Math.floor(s / 60)} 分钟前` : `${Math.floor(s / 3600)} 小时前`),
   noScript: "Squeek Pet World 需要 JavaScript。",
   independent: "独立社区项目 · 非 SqueekChain 官方产品",
+  whitepaper: "白皮书",
   backHome: "返回 Squeek Pulse",
 };
 
@@ -135,7 +140,7 @@ const sentences = (first, second) => `${first}${/[。！？]$/.test(first) ? "" 
 
 /** The World's own top bar: its brand, as squeekpulse.xyz's entry page shows Squeek Pulse's, and no sidebar. */
 function topbar(lang) {
-  return `<header class="topbar world-top"><a class="brand" href="${ROOT}" aria-current="page"><img class="pixel" src="${ROOT}world.svg" alt="" width="32" height="32"><span>Squeek Pet World<small>COMMUNITY WEB GAME</small></span></a><div class="top-actions"><span class="network-pill"><span class="green-dot"></span>SEPOLIA</span><button class="language-button" data-action="language">${lang === "zh" ? "EN" : "中文"}</button><a href="https://docs.squeekchain.com" target="_blank" rel="noreferrer" class="top-doc">Docs ${pixelIcon("arrow", 12)}</a></div></header>`;
+  return `<header class="topbar world-top"><a class="brand" href="${ROOT}" aria-current="page"><img class="pixel" src="${ROOT}world.svg" alt="" width="32" height="32"><span>Squeek Pet World<small>COMMUNITY WEB GAME</small></span></a><div class="top-actions"><span class="network-pill"><span class="green-dot"></span>SEPOLIA</span><button class="language-button" data-action="language">${lang === "zh" ? "EN" : "中文"}</button><a href="${WHITEPAPER[lang]}" class="top-doc world-paper">${esc(copyFor(lang).whitepaper)}</a><a href="https://docs.squeekchain.com" target="_blank" rel="noreferrer" class="top-doc">Docs ${pixelIcon("arrow", 12)}</a></div></header>`;
 }
 
 export function liveHtml(c, { status = null, failed = false, receivedAt = 0, lang = "en", now = Date.now() } = {}) {
@@ -161,14 +166,14 @@ function hero(c, live, chain = WORLD_CHAIN) {
   return `<section class="pet-hero world-hero" aria-labelledby="world-title"><div class="pet-hero-copy"><p class="hero-tag"><span class="green-dot"></span>${esc(c.heroTag)}</p><h1 id="world-title" class="pet-logo">Squeek Pet World</h1><h2>${esc(c.heroTitle)}</h2><p class="pet-lead">${esc(lead)}</p><ul class="pet-chips">${chips.map(([ico, text]) => `<li>${pixelIcon(ico, 12)}${esc(text)}</li>`).join("")}</ul></div><div class="world-live" id="world-live" aria-live="polite">${live}</div></section>`;
 }
 
-function footer(c) {
-  return `<footer><div class="footer-brand">${pixelIcon("sparkle", 24)} Squeek Pet World</div><p>${esc(c.independent)}</p><a href="${mainSite()}">${esc(c.backHome)} ↗</a></footer>`;
+function footer(c, lang) {
+  return `<footer><div class="footer-brand">${pixelIcon("sparkle", 24)} Squeek Pet World</div><p>${esc(c.independent)}</p><a href="${WHITEPAPER[lang]}">${esc(c.whitepaper)}</a><a href="${mainSite()}">${esc(c.backHome)} ↗</a></footer>`;
 }
 
 /** The page around the game for one language. Pure, so tests can read it without a browser. */
 export function pageHtml(lang, { live = {}, chain = WORLD_CHAIN } = {}) {
   const c = copyFor(lang);
-  return `<div class="world-page">${topbar(lang)}<main id="main" class="pet-main world-main">${hero(c, liveHtml(c, { lang, ...live }), chain)}<div id="world-game" class="world-game"></div>${footer(c)}</main></div>`;
+  return `<div class="world-page">${topbar(lang)}<main id="main" class="pet-main world-main">${hero(c, liveHtml(c, { lang, ...live }), chain)}<div id="world-game" class="world-game"></div>${footer(c, lang)}</main></div>`;
 }
 
 const state = { lang: adoptLanguage() ?? readLanguage(), status: null, failed: false, receivedAt: 0, world: null };
@@ -190,7 +195,7 @@ function relabel() {
   };
   swap(".topbar", topbar(state.lang));
   swap(".world-hero", hero(c, liveHtml(c, liveOptions())));
-  swap(".world-main > footer", footer(c));
+  swap(".world-main > footer", footer(c, state.lang));
   state.world?.setLanguage(state.lang);
 }
 

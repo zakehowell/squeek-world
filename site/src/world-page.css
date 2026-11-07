@@ -18,6 +18,11 @@
   width: 32px;
   height: 32px;
 }
+/* The footer links to the whitepaper, then back to Squeek Pulse: the two sit
+   together at the right. The whitepaper's own pages use this footer too. */
+.world-main footer > a + a {
+  margin-left: 0;
+}
 .world-hero {
   grid-template-columns: minmax(0, 1fr) auto;
 }
@@ -62,6 +67,11 @@
   }
   .world-live {
     width: 100%;
+  }
+  /* The footer's words take a line of their own, so its two links wrap
+     together onto the next. */
+  .world-main footer > p {
+    flex-basis: 100%;
   }
 }
 /* A 2x scene (300 px) needs a screen about 440 px wide; 1.5x stays crisp on 2x

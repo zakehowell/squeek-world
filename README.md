@@ -6,7 +6,7 @@ A little web game that grows with **Squeektoshi**, the real hamster on SqueekCha
 
 Each batch of rounds SqueekCore settles on Sepolia, about every ten minutes, is one turn here, so no amount of clicking can speed it up. Busy rounds bring data beans and steps, resting rounds bring dream dew. Grow a garden, build a home, send Squeektoshi on trips and take on a weekly boss together with everyone who plays. With a Sepolia wallet you can also stake test SQK to earn SQB, buy a home deed on the shared town map and send supplies to the guild war.
 
-This is an independent community project, not an official SqueekChain product. It runs only on the Sepolia testnet: SQK and SQB here have no real value.
+This is an independent community project, not an official SqueekChain product. It runs only on the Sepolia testnet: SQK and SQB here have no real value. The [whitepaper](https://world.squeekpulse.xyz/whitepaper/en/) ([中文](https://world.squeekpulse.xyz/whitepaper/), which prevails) explains the design, the turns, the two tokens, the contracts and the risks.
 
 ![Squeek Pet World at world.squeekpulse.xyz: its own top bar, the real hamster resting, and the real world asking for a wallet](docs/screenshots/world.png)
 
@@ -37,6 +37,8 @@ src/           the game (TypeScript): rules as data, the turn engine, the settle
 src/world/chain/   the on-chain part: reads, the wallet, permits, transactions and their errors
 site/          the website around the game: the page (top bar, live hamster, footer), styles,
                fonts and sprites, response headers (site/public/), its tests and its build
+site/whitepaper/   the whitepaper's two sources (zh.md, which prevails, and en.md) and the
+               generator that writes its pages into site/public/whitepaper/
 contracts/     the SQB token, the minter, the World shop and the SQK faucet (Solidity, Hardhat),
                their tests, and the deploy page; see contracts/README.md
 tests/         the game's tests (Vitest)
@@ -60,6 +62,8 @@ npm run preview    # build, then serve dist/ with Cloudflare's local Pages serve
 `npm run build:game` turns `src/world` into one script, `dist-game/squeek-world.js`, whose `mountWorld(element, { language, chain })` draws the game in the element's shadow root, so the page's styles and the game's never mix. `site/build.mjs` bundles it with the page (`site/src/world-page.js`), copies `site/public/`, the fonts and the sprites, and writes `dist/`. The script's first comment names the commit it was built from and stays at the end of the deployed `world.js`, so you can see which commit is live.
 
 `chain` is the World config the deploy page prints: the contracts' addresses and a public Sepolia node. The site's copy is `site/src/world-chain.js`; set to `null`, the World is the read-only game.
+
+The whitepaper is written in `site/whitepaper/zh.md` and `en.md`, which keep the same chapters, sections, tables and figures. After editing either, run `node site/whitepaper/render.mjs`: it writes the two static pages, `/whitepaper/` and `/whitepaper/en/`, into `site/public/whitepaper/`. Commit them with the sources; `site/tests/whitepaper.test.js` fails while they are out of date.
 
 The contracts are a package of their own: `cd contracts && npm ci && npm test`. Playing the on-chain World on a local fork of Sepolia is described in [contracts/README.md](contracts/README.md).
 
