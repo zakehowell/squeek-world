@@ -183,13 +183,15 @@ export function parse(md) {
 
 // ---- Writing the page -------------------------------------------------------
 
+const ADDRESS = /^0x[0-9a-f]{40}$/;
+
 function anchor(href, label, lang) {
   if (href === SITE_URL || href.startsWith(`${SITE_URL}/`)) {
     const path = href.slice(SITE_URL.length) || "/";
     return `<a href="${esc(path === "/" ? gameHref(lang) : path)}">${label}</a>`;
   }
   if (!href.startsWith("https://")) throw new Error(`Links leave the site only over https: ${href}`);
-  const addr = /^0x[0-9a-f]{40}$/.test(label) ? ' class="wp-addr"' : "";
+  const addr = ADDRESS.test(label) ? ' class="wp-addr"' : "";
   return `<a${addr} href="${esc(href)}" target="_blank" rel="noreferrer">${label}</a>`;
 }
 
@@ -213,7 +215,8 @@ function inline(text, lang) {
 const plain = (text) => text.replace(/`([^`]+)`/g, "$1").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
 /** Short table cells ("灯笼小路", "约 10,094", "Starlight Ruins") never break inside. */
 const short = (text) => plain(text).length <= (/[\u3400-\u9fff]/.test(text) ? 10 : 16);
-const cellClass = (text) => (short(text) ? ' class="wp-short"' : "");
+/** A cell that is one address (a phone gives it the card's whole width), or short enough never to wrap. */
+const cellClass = (text) => (ADDRESS.test(plain(text)) ? ' class="wp-addr-cell"' : short(text) ? ' class="wp-short"' : "");
 
 function block(b, lang) {
   switch (b.type) {

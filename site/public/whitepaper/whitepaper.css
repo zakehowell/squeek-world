@@ -15,6 +15,9 @@ a.language-button {
 }
 .wp-main {
   max-width: 1280px;
+  /* Where the browser can (Chromium, Safari 26), no line ends a paragraph,
+     a table cell or a figure box with a lone character or word. */
+  text-wrap-style: pretty;
 }
 
 /* Cover */
@@ -466,6 +469,13 @@ ul.wp-list li::before {
   font-size: var(--t10);
   font-family: var(--f10);
   line-height: 1.7;
+}
+/* The architecture's boxes hold short phrases: a narrow box breaks them at a
+   comma or a space ("静态网站，" / "没有服务器"), never inside a word unless
+   the word alone is too wide. */
+.wp-arch .wp-node span {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 .wp-arrow {
   color: var(--ink);
@@ -947,6 +957,19 @@ ul.wp-list li::before {
   }
   .wp-cols-2 td::before {
     content: none;
+  }
+  /* An address takes the card's whole width, under its label, in the 10 px
+     face: its 42 characters stay on one line from a 360 px screen up. */
+  .wp-doc td.wp-addr-cell {
+    display: block;
+  }
+  .wp-addr-cell::before {
+    display: block;
+  }
+  .wp-addr-cell .wp-addr {
+    font-size: var(--t10);
+    font-family: var(--f10);
+    white-space: nowrap;
   }
   /* Figures stack. */
   .wp-nodes-chain {
