@@ -57,7 +57,7 @@
 </section>
 <section class="wp-section" id="s1-2" aria-labelledby="s1-2-title">
 <h3 id="s1-2-title"><span class="wp-section-num">1.2</span>要解决的问题</h3>
-<p>链游常见的失败方式是死亡螺旋：游戏币随玩家人数和游戏时长增发，需求主要靠新玩家进场；新玩家一少，币价下跌、收益缩水、玩家离开，币价跌得更快。Axie Infinity 和 STEPN 都经历过（见 5.5 节）。</p>
+<p>链游常见的失败方式是死亡螺旋：游戏币随玩家人数和游戏时长增发，需求主要靠新玩家进场；新玩家一少，币价下跌、收益缩水、玩家离开，币价跌得更快。我们的应对见 5.5 节。</p>
 <p>另一方面，一只真实仓鼠的跑轮数据很有趣，但只能看，不能参与。Squeek Pet World 给玩家每天回来的理由：仓鼠跑步，世界就生长。</p>
 <p>我们的做法是：所有产出只来自同一只仓鼠的已结算工作量，天然有上限，不随玩家人数增加；日常玩法免费，在本地运行；链上只放可选的稀缺资产。</p>
 </section>
@@ -187,7 +187,7 @@
 </section>
 <section class="wp-section" id="s5-5" aria-labelledby="s5-5-title">
 <h3 id="s5-5-title"><span class="wp-section-num">5.5</span>为什么光有双币还不够</h3>
-<p>双币本身挡不住死亡螺旋。Axie Infinity 的游戏币 SLP 没有供应上限，2022 年 2 月团队为避免“彻底崩溃”把日产量砍掉 56%（<a href="https://finance.yahoo.com/news/axie-infinity-reduces-slp-emissions-092625363.html" target="_blank" rel="noreferrer">CoinDesk</a>）；STEPN 的奖励币 GST 在 2022 年 4 月到 6 月跌了 98%（<a href="https://cryptoslate.com/is-move-to-earn-dead-stepns-gst-token-tumbles-98-in-2-months/" target="_blank" rel="noreferrer">CryptoSlate</a>）。两者的共同点是：游戏币随玩家人数和游戏时长增发，需求主要靠新玩家进场。我们反过来设计：</p>
+<p>双币本身挡不住死亡螺旋。只要游戏币随玩家人数和游戏时长增发，需求又主要靠新玩家进场，拆成两种币也一样会跌。我们反过来设计：</p>
 <div class="wp-table wp-cols-2"><table><thead><tr><th scope="col">护栏</th><th scope="col">做法</th></tr></thead><tbody><tr><th scope="row" class="wp-short">产量不随人数涨</th><td data-label="做法"><span>SQB 全网日产量只由仓鼠的工作量决定；人越多，每人分得越少</span></td></tr><tr><th scope="row" class="wp-short">不卖门票</th><td data-label="做法"><span>数据豆和全部日常玩法免费，SQB 和 SQK 只买可选的链上资产</span></td></tr><tr><th scope="row" class="wp-short">本地进度不变现</th><td data-label="做法"><span>本地存档可以被改，所以数据豆永远不能换成 SQB</span></td></tr><tr><th scope="row" class="wp-short">花掉就销毁</th><td data-label="做法"><span>每一笔 SQB 和 SQK 消费都销毁，没有国库</span></td></tr><tr><th scope="row" class="wp-short">只在测试网</th><td data-label="做法"><span>SQB 只部署在 Sepolia，没有真实价值，不做任何收益承诺</span></td></tr></tbody></table></div>
 <p>这些护栏限制了供给，但不能创造需求：SQB 有没有人要，最终取决于有多少玩家愿意把它花在公会战和装饰上。</p>
 </section>
@@ -327,7 +327,7 @@
 </section>
 <section class="panel wp-chapter" id="appendix-c" aria-labelledby="appendix-c-title">
 <h2 id="appendix-c-title"><span class="sr-only">附录 </span><span class="wp-badge">C</span><span class="wp-chapter-name">参考资料</span></h2>
-<ul class="wp-list"><li>SqueekChain 公开 API：<a href="https://api.squeekchain.com/v1/settlements?range=30d" target="_blank" rel="noreferrer">api.squeekchain.com</a></li><li>SqueekChain 官方文档：<a href="https://docs.squeekchain.com/" target="_blank" rel="noreferrer">docs.squeekchain.com</a></li><li>部署的合约源码：<a href="https://github.com/zakehowell/squeek-pet/pull/7" target="_blank" rel="noreferrer">zakehowell/squeek-pet PR #7</a></li><li>World 网页游戏：<a href="/?lang=zh">world.squeekpulse.xyz</a></li><li>World 源码（网站、游戏和合约）：<a href="https://github.com/zakehowell/squeek-world" target="_blank" rel="noreferrer">zakehowell/squeek-world</a></li><li>本白皮书网页版：中文 <a href="/whitepaper/">world.squeekpulse.xyz/whitepaper/</a>，英文 <a href="/whitepaper/en/">world.squeekpulse.xyz/whitepaper/en/</a></li><li>Axie Infinity 削减 SLP 产量：<a href="https://finance.yahoo.com/news/axie-infinity-reduces-slp-emissions-092625363.html" target="_blank" rel="noreferrer">CoinDesk</a></li><li>STEPN 的 GST 两个月跌 98%：<a href="https://cryptoslate.com/is-move-to-earn-dead-stepns-gst-token-tumbles-98-in-2-months/" target="_blank" rel="noreferrer">CryptoSlate</a></li><li>八部门通知的报道：<a href="https://www.stdaily.com/web/gdxw/2026-02/07/content_471656.html" target="_blank" rel="noreferrer">科技日报</a></li></ul>
+<ul class="wp-list"><li>SqueekChain 公开 API：<a href="https://api.squeekchain.com/v1/settlements?range=30d" target="_blank" rel="noreferrer">api.squeekchain.com</a></li><li>SqueekChain 官方文档：<a href="https://docs.squeekchain.com/" target="_blank" rel="noreferrer">docs.squeekchain.com</a></li><li>部署的合约源码：<a href="https://github.com/zakehowell/squeek-pet/pull/7" target="_blank" rel="noreferrer">zakehowell/squeek-pet PR #7</a></li><li>World 网页游戏：<a href="/?lang=zh">world.squeekpulse.xyz</a></li><li>World 源码（网站、游戏和合约）：<a href="https://github.com/zakehowell/squeek-world" target="_blank" rel="noreferrer">zakehowell/squeek-world</a></li><li>本白皮书网页版：中文 <a href="/whitepaper/">world.squeekpulse.xyz/whitepaper/</a>，英文 <a href="/whitepaper/en/">world.squeekpulse.xyz/whitepaper/en/</a></li><li>八部门通知的报道：<a href="https://www.stdaily.com/web/gdxw/2026-02/07/content_471656.html" target="_blank" rel="noreferrer">科技日报</a></li></ul>
 <a class="wp-up" href="#contents">↑ 目录</a>
 </section>
 <section class="panel wp-chapter" id="appendix-d" aria-labelledby="appendix-d-title">

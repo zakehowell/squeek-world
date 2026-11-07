@@ -31,7 +31,7 @@ Squeek Pet World 只建在这些公开数据之上：它读取公开 API 和合�
 
 ### 1.2 要解决的问题
 
-链游常见的失败方式是死亡螺旋：游戏币随玩家人数和游戏时长增发，需求主要靠新玩家进场；新玩家一少，币价下跌、收益缩水、玩家离开，币价跌得更快。Axie Infinity 和 STEPN 都经历过（见 5.5 节）。
+链游常见的失败方式是死亡螺旋：游戏币随玩家人数和游戏时长增发，需求主要靠新玩家进场；新玩家一少，币价下跌、收益缩水、玩家离开，币价跌得更快。我们的应对见 5.5 节。
 
 另一方面，一只真实仓鼠的跑轮数据很有趣，但只能看，不能参与。Squeek Pet World 给玩家每天回来的理由：仓鼠跑步，世界就生长。
 
@@ -209,7 +209,7 @@ Boss 的伤害有四个来源：仓鼠本周已结算的工作量（1 单位 = 1
 
 ### 5.5 为什么光有双币还不够
 
-双币本身挡不住死亡螺旋。Axie Infinity 的游戏币 SLP 没有供应上限，2022 年 2 月团队为避免“彻底崩溃”把日产量砍掉 56%（[CoinDesk](https://finance.yahoo.com/news/axie-infinity-reduces-slp-emissions-092625363.html)）；STEPN 的奖励币 GST 在 2022 年 4 月到 6 月跌了 98%（[CryptoSlate](https://cryptoslate.com/is-move-to-earn-dead-stepns-gst-token-tumbles-98-in-2-months/)）。两者的共同点是：游戏币随玩家人数和游戏时长增发，需求主要靠新玩家进场。我们反过来设计：
+双币本身挡不住死亡螺旋。只要游戏币随玩家人数和游戏时长增发，需求又主要靠新玩家进场，拆成两种币也一样会跌。我们反过来设计：
 
 | 护栏 | 做法 |
 | --- | --- |
@@ -487,8 +487,6 @@ Boss 的伤害有四个来源：仓鼠本周已结算的工作量（1 单位 = 1
 - World 网页游戏：[world.squeekpulse.xyz](https://world.squeekpulse.xyz/)
 - World 源码（网站、游戏和合约）：[zakehowell/squeek-world](https://github.com/zakehowell/squeek-world)
 - 本白皮书网页版：中文 [world.squeekpulse.xyz/whitepaper/](https://world.squeekpulse.xyz/whitepaper/)，英文 [world.squeekpulse.xyz/whitepaper/en/](https://world.squeekpulse.xyz/whitepaper/en/)
-- Axie Infinity 削减 SLP 产量：[CoinDesk](https://finance.yahoo.com/news/axie-infinity-reduces-slp-emissions-092625363.html)
-- STEPN 的 GST 两个月跌 98%：[CryptoSlate](https://cryptoslate.com/is-move-to-earn-dead-stepns-gst-token-tumbles-98-in-2-months/)
 - 八部门通知的报道：[科技日报](https://www.stdaily.com/web/gdxw/2026-02/07/content_471656.html)
 
 ## 附录 D 版本记录

@@ -31,7 +31,7 @@ Squeek Pet World is built only on this public data: it reads the public API and 
 
 ### 1.2 The problem
 
-Blockchain games often fail through a death spiral: the game token is issued in step with the number of players and the time they play, and demand comes mostly from new players arriving. When fewer arrive, the price falls, earnings shrink, players leave and the price falls faster. Axie Infinity and STEPN both went through this (see section 5.5).
+Blockchain games often fail through a death spiral: the game token is issued in step with the number of players and the time they play, and demand comes mostly from new players arriving. When fewer arrive, the price falls, earnings shrink, players leave and the price falls faster. Section 5.5 sets out how we avoid it.
 
 Meanwhile, a real hamster's wheel data is fun to watch, but there is nothing to do with it. Squeek Pet World gives players a reason to come back every day: when the hamster runs, the world grows.
 
@@ -209,7 +209,7 @@ Data beans stay local and vanish when spent; SQB is minted only by the minting c
 
 ### 5.5 Why two tokens alone are not enough
 
-Two tokens alone do not stop a death spiral. Axie Infinity's game token, SLP, had no supply cap, and in February 2022 the team cut its daily issuance by 56% to avoid a "total collapse" ([CoinDesk](https://finance.yahoo.com/news/axie-infinity-reduces-slp-emissions-092625363.html)); STEPN's reward token, GST, fell 98% from April to June 2022 ([CryptoSlate](https://cryptoslate.com/is-move-to-earn-dead-stepns-gst-token-tumbles-98-in-2-months/)). Both issued their game token in step with the number of players and the time they played, and both relied mostly on new players for demand. We designed the other way round:
+Two tokens alone do not stop a death spiral. As long as the game token is issued in step with the number of players and the time they play, and demand comes mostly from new players, splitting it into two tokens does not stop the fall. We designed the other way round:
 
 | Guardrail | How |
 | --- | --- |
@@ -487,8 +487,6 @@ Scavenging contributes less, but every turn has a chance to pick up materials or
 - The World web game: [world.squeekpulse.xyz](https://world.squeekpulse.xyz/)
 - The World's source (site, game and contracts): [zakehowell/squeek-world](https://github.com/zakehowell/squeek-world)
 - This whitepaper on the web: Chinese [world.squeekpulse.xyz/whitepaper/](https://world.squeekpulse.xyz/whitepaper/), English [world.squeekpulse.xyz/whitepaper/en/](https://world.squeekpulse.xyz/whitepaper/en/)
-- Axie Infinity cuts SLP emissions: [CoinDesk](https://finance.yahoo.com/news/axie-infinity-reduces-slp-emissions-092625363.html)
-- STEPN's GST falls 98% in two months: [CryptoSlate](https://cryptoslate.com/is-move-to-earn-dead-stepns-gst-token-tumbles-98-in-2-months/)
 - Report on the eight agencies' notice: [Science and Technology Daily](https://www.stdaily.com/web/gdxw/2026-02/07/content_471656.html) (in Chinese)
 
 ## Appendix D Version history
