@@ -1,0 +1,29 @@
+{
+  "name": "squeek-world",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Squeek Pet World: a little web game that grows with Squeektoshi, the real hamster on SqueekChain (Sepolia testnet), with its website and its contracts.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
+    "build:game": "vite build --config vite.game.config.ts",
+    "build": "npm run typecheck && npm run build:game && node site/build.mjs",
+    "test": "vitest run && npm run build:game && node --test site/tests/*.test.js",
+    "preview": "npm run build && npx --yes wrangler@4.158.0 pages dev dist",
+    "deploy": "npm test && npm run build && npx --yes wrangler@4.158.0 pages deploy dist --project-name squeek-world --branch main --commit-dirty=true",
+    "deploy:page": "echo \"Open http://127.0.0.1:1420/contracts/deploy/ in the browser that has your wallet\" && vite"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "esbuild": "0.28.2",
+    "ethers": "6.17.0",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

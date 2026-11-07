@@ -1,0 +1,99 @@
+/* Squeek Pet World, its own site (world.squeekpulse.xyz). The hero and the live
+   card reuse the Squeek Pet page's pixel classes; the game draws its own styles
+   in a shadow root. */
+/* There is no sidebar: the top bar carries the World's own brand, as the entry
+   page's does on squeekpulse.xyz. */
+.world-top {
+  height: auto;
+  min-height: 77px;
+  gap: 16px;
+  padding: 12px 39px;
+}
+/* styles.css hides the brand's name and shrinks its mark where a sidebar
+   narrows; here both stay. The 16-pixel mark is drawn at whole pixels. */
+.world-top .brand > span {
+  display: block;
+}
+.world-top .brand img {
+  width: 32px;
+  height: 32px;
+}
+.world-hero {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.world-live {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  width: 340px;
+  padding: 16px;
+  background: var(--panel);
+  box-shadow: var(--px-frame), var(--px-drop);
+}
+.world-live-art {
+  --scale: 2;
+}
+.world-live .pet-live-text strong {
+  font-size: var(--t12);
+  font-family: var(--f12);
+}
+.world-game {
+  display: block;
+  min-height: 480px;
+  margin-bottom: 34px;
+}
+/* One column from here on. minmax(0, 1fr) keeps the live card's art from
+   widening the hero past the screen. */
+@media (max-width: 1150px) {
+  .world-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .world-top {
+    min-height: 65px;
+    padding: 10px 25px;
+  }
+}
+@media (max-width: 650px) {
+  .world-top {
+    min-height: 0;
+    padding: 10px 17px;
+  }
+  .world-live {
+    width: 100%;
+  }
+}
+/* A 2x scene (300 px) needs a screen about 440 px wide; 1.5x stays crisp on 2x
+   screens, as on the Squeek Pet page. */
+@media (max-width: 460px) {
+  .world-live-art {
+    --scale: 1.5;
+  }
+}
+/* The not-found page (site/public/404.html): one framed card, centred. */
+.world-missing {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  width: min(440px, calc(100% - 32px));
+  margin: max(40px, 12vh) auto 40px;
+  padding: 26px 24px 30px;
+  text-align: center;
+  background: var(--panel);
+  box-shadow: var(--px-frame), var(--px-drop);
+}
+.world-missing img {
+  max-width: 100%;
+  height: auto;
+}
+.world-missing .pet-logo {
+  margin: 4px 0 2px;
+}
+.world-missing p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+.world-missing .button {
+  margin-top: 12px;
+}
