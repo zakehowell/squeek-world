@@ -98,6 +98,16 @@ export interface FaucetStatus {
   held: bigint;
 }
 
+/**
+ * How the faucet's holding limit reads to a player: below 1 SQK only an empty wallet can take
+ * any; from 2^128 SQK units up there is in effect no limit; anything else is a number of SQK.
+ */
+export function faucetRule(limit: bigint): "empty" | "open" | "below" {
+  if (limit < 10n ** 18n) return "empty";
+  if (limit >= 2n ** 128n) return "open";
+  return "below";
+}
+
 type Row = Record<string, unknown>;
 const big = (v: unknown) => v as bigint;
 const int = (v: unknown) => Number(v as bigint);
