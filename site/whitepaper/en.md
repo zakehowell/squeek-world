@@ -284,7 +284,7 @@ Ownership transfers take two steps (the current owner proposes, the new owner ac
 
 ### 6.4 Testnet SQK faucet
 
-Players without a Squeek NFT cannot get testnet SQK, so the World's Stake tab has a faucet: a wallet holding less than 100 SQK can claim 100 every 24 hours (the settings at deployment, which the owner can change). The faucet is topped up by plain transfers, which anyone can send; it held 0 when it was deployed on 2026-11-07.
+Players without a Squeek NFT cannot get testnet SQK, so the World's Stake tab has a faucet: a wallet holding less than 100 SQK can claim 10 every 24 hours (100 per claim at deployment, changed to 10 on 2026-11-07; the owner can change it). The faucet is topped up by plain transfers, which anyone can send; it held 0 when it was deployed on 2026-11-07.
 
 ### 6.5 Tests and verification
 
@@ -307,7 +307,7 @@ Players without a Squeek NFT cannot get testnet SQK, so the World's Stake tab ha
 | The deployer's key leaks | An attacker could pause minting, take the SQK in the faucet, or install their own minting contract after the 48-hour notice | The deployer cannot mint directly or touch staked SQK; a new minting contract needs a 48-hour public notice on chain, long enough to be noticed; we recommend moving ownership to a hardware wallet or a multisig |
 | The website is tampered with | A tampered World page could ask players to sign malicious transactions or approvals | Testnet only, so SQK and SQB have no real value; the site can only be published from the project's Cloudflare account (later by automatic deploys from GitHub), and both should use two-factor authentication; the page's Content Security Policy only allows connections to the SqueekChain API and one Sepolia RPC; wallets show who every transaction and approval goes to, so players can check it against the contract addresses in this paper first |
 | Sybil attacks | One person runs many wallets to farm rewards | Rewards are shared by stake, so splitting wallets earns nothing extra; supplies count by the amount burned |
-| The faucet is farmed or runs dry | One person claims testnet SQK with many wallets; once the faucet is empty, new players get no SQK | 100 SQK per claim, no claims for wallets holding 100 or more, once every 24 hours; testnet SQK has no real value; an empty faucet only affects the on-chain part, and the local world plays on |
+| The faucet is farmed or runs dry | One person claims testnet SQK with many wallets; once the faucet is empty, new players get no SQK | 10 SQK per claim, no claims for wallets holding 100 or more, once every 24 hours; testnet SQK has no real value; an empty faucet only affects the on-chain part, and the local world plays on |
 | A local save is edited | It changes only that player's own world | Data beans cannot become SQB; public rankings count only on-chain records |
 | Price manipulation | Testnet liquidity is thin, so the price of SQB is easy to pump and dump | Every price in the game is a fixed amount of SQB or SQK; no pool prices are read |
 

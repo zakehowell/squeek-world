@@ -22,7 +22,7 @@ The project owner deployed them with the deploy page on 2026-11-07, from the own
 | `WorldShop` | [`0x2e4e87b9a2e7cbd227ed203e2d870b4949cf725e`](https://sepolia.etherscan.io/address/0x2e4e87b9a2e7cbd227ed203e2d870b4949cf725e) |
 | `SqkFaucet` | [`0x62705e950cd1ade1bde8746fcdc71bbc750c6d0c`](https://sepolia.etherscan.io/address/0x62705e950cd1ade1bde8746fcdc71bbc750c6d0c) |
 
-The shop has the default prices. The faucet was set to give 100 SQK once a day to wallets holding less than 100 SQK, and started empty: the owner fills it by sending it SQK. The site reads these addresses from [`site/src/world-chain.js`](../site/src/world-chain.js). The contracts' source is not verified on Etherscan yet.
+The shop has the default prices. The faucet was set to give 100 SQK once a day to wallets holding less than 100 SQK, and started empty; on 2026-11-07 the owner changed it to 10 SQK per claim (`setDrip(10e18, 86400, 100e18)`), keeping the 24-hour wait and the 100 SQK limit: the owner fills it by sending it SQK. The site reads these addresses from [`site/src/world-chain.js`](../site/src/world-chain.js). The contracts' source is not verified on Etherscan yet.
 
 ## Deploying to Sepolia
 
