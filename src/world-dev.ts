@@ -1,0 +1,40 @@
+import type { Language } from "./core/i18n";
+import { mountWorld } from "./world/app";
+import { ui } from "./world/i18n";
+
+// A bare page for working on Squeek Pet World with `npm run dev` (/world.html).
+// The real page is world.squeekpulse.xyz: it mounts the built game
+// (`npm run build:game`, see site/) with the site's own top bar, language
+// switch, fonts and live hamster.
+
+let lang: Language = new URLSearchParams(location.search).get("lang") === "zh" ? "zh" : "en";
+const title = document.querySelector("h1")!;
+const toggle = document.querySelector<HTMLButtonElement>("#lang")!;
+// ?chain=local plays on a local fork of Sepolia (contracts/scripts/local-world.cjs);
+// automated runs can hand in a deployment as window.__squeekChain.
+async function chainConfig(): Promise<unknown> {
+  const handed = (window as { __squeekChain?: unknown }).__squeekChain;
+  if (handed) return handed;
+  if (new URLSearchParams(location.search).get("chain") !== "local") return undefined;
+  const response = await fetch("/contracts/deploy/local.json", { cache: "no-store" });
+  return response.ok ? response.json() : undefined;
+}
+
+const world = mountWorld(document.querySelector<HTMLElement>("#world")!, { language: lang, chain: await chainConfig() });
+
+function label() {
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  document.title = `${ui(lang, "app.title")} · dev`;
+  title.textContent = ui(lang, "app.title");
+  toggle.textContent = lang === "zh" ? "EN" : "中文";
+}
+
+toggle.addEventListener("click", () => {
+  lang = lang === "zh" ? "en" : "zh";
+  world.setLanguage(lang);
+  label();
+});
+label();
+
+// Hooks for automated screenshots.
+Object.assign(window, { __squeekWorld: world });
