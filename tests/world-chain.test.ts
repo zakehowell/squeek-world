@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { sharedBoss, supplyDamage } from "../src/world/boss";
 import { formatAmount, inputAmount, parseAmount } from "../src/world/chain/amount";
 import { readChainConfig } from "../src/world/chain/config";
-import type { ShopOverview } from "../src/world/chain/game";
+import { faucetRule, type ShopOverview } from "../src/world/chain/game";
 import { dailyRate, explain, liveClaimable } from "../src/world/chain/session";
 import { applyChoice, check, newWorld } from "../src/world/engine";
 import { CHAIN_KEYS, chainDict, ct, hasChainKey } from "../src/world/i18n-chain";
@@ -51,6 +51,16 @@ describe("on-chain text", () => {
   it("fills in values", () => {
     expect(ct("en", "done.supply", { amount: "12.5", damage: 125 })).toBe("Sent 12.5 SQB of supplies: 125 damage to the boss.");
     expect(ct("zh", "town.sold", { n: 3, cap: 100 })).toBe("已售 3 / 100");
+  });
+});
+
+describe("faucet rule", () => {
+  it("reads the holding limit as empty-only, a number of SQK, or no limit", () => {
+    expect(faucetRule(1n)).toBe("empty");
+    expect(faucetRule(10n ** 18n - 1n)).toBe("empty");
+    expect(faucetRule(10n ** 18n)).toBe("below");
+    expect(faucetRule(100n * 10n ** 18n)).toBe("below");
+    expect(faucetRule(2n ** 256n - 1n)).toBe("open");
   });
 });
 

@@ -130,7 +130,10 @@ const en = {
   "faucet.lead": "SQK is Squeekchain's token on Sepolia testnet. A wallet holding less than {limit} SQK can take {amount} SQK from the faucet once a day.",
   "faucet.get": "Get {amount} SQK",
   "faucet.next": "Next drip in {time}",
+  "faucet.leadEmpty": "SQK is Squeekchain's token on Sepolia testnet. A wallet with no SQK at all can take {amount} SQK from the faucet, once a day at most.",
+  "faucet.leadOpen": "SQK is Squeekchain's token on Sepolia testnet. Any wallet can take {amount} SQK from the faucet once a day.",
   "faucet.full": "This wallet already holds {limit} SQK or more.",
+  "faucet.fullEmpty": "Only wallets with no SQK can take any, and this one already has some.",
   "faucet.empty": "The faucet is empty right now.",
   "faucet.none": "There's no faucet yet. Squeek owners earn SQK on Squeekchain, and the community can share some test SQK.",
 
@@ -347,7 +350,10 @@ const zh: Record<ChainKey, string> = {
   "faucet.lead": "SQK 是 Squeekchain 在 Sepolia 测试网上的代币。钱包里少于 {limit} SQK 时，每天可以从水龙头领 {amount} SQK。",
   "faucet.get": "领取 {amount} SQK",
   "faucet.next": "{time}后可以再领",
+  "faucet.leadEmpty": "SQK 是 Squeekchain 在 Sepolia 测试网上的代币。钱包里一个 SQK 都没有时，可以从水龙头领 {amount} SQK，每天最多一次。",
+  "faucet.leadOpen": "SQK 是 Squeekchain 在 Sepolia 测试网上的代币。每个钱包每天都可以从水龙头领 {amount} SQK。",
   "faucet.full": "这个钱包已有 {limit} SQK 以上。",
+  "faucet.fullEmpty": "只有一个 SQK 都没有的钱包才能领，这个钱包里已经有了。",
   "faucet.empty": "水龙头暂时空了。",
   "faucet.none": "暂时还没有水龙头。Squeek 持有者在 Squeekchain 上挖 SQK，也可以在社区里要一点测试网 SQK。",
 

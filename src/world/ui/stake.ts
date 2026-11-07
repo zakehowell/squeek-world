@@ -1,5 +1,6 @@
 import { buildingArt } from "../art/world-art";
 import { formatAmount } from "../chain/amount";
+import { faucetRule } from "../chain/game";
 import { dailyRate, liveClaimable } from "../chain/session";
 import { duration, num } from "../i18n";
 import { art, h } from "./dom";
@@ -121,10 +122,12 @@ function faucet(v: View, c: ChainView): HTMLElement {
   else {
     const amount = formatAmount(f.amount, 0);
     const limit = formatAmount(f.limit, 0);
-    parts.push(hint(ctr(v, "faucet.lead", { amount, limit })));
+    const rule = faucetRule(f.limit);
+    const lead = rule === "empty" ? "faucet.leadEmpty" : rule === "open" ? "faucet.leadOpen" : "faucet.lead";
+    parts.push(hint(ctr(v, lead, { amount, limit })));
     const wait = f.nextAt * 1000 - c.now;
     const blocked =
-      f.held >= f.limit ? ctr(v, "faucet.full", { limit }) : f.left < f.amount ? ctr(v, "faucet.empty") : wait > 0 ? ctr(v, "faucet.next", { time: duration(v.lang, wait) }) : null;
+      f.held >= f.limit ? ctr(v, rule === "empty" ? "faucet.fullEmpty" : "faucet.full", { limit }) : f.left < f.amount ? ctr(v, "faucet.empty") : wait > 0 ? ctr(v, "faucet.next", { time: duration(v.lang, wait) }) : null;
     parts.push(
       h("div", { class: "faucet-row" }, chainButton(v, ctr(v, "faucet.get", { amount }), () => c.drip(), { primary: !blocked, blocked: blocked ?? undefined }), blocked ? h("span", { class: "muted small" }, blocked) : null),
       busyLine(v, ["drip"]),
