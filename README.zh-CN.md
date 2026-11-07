@@ -6,7 +6,7 @@
 
 SqueekCore 在 Sepolia 上大约每十分钟结算一批，每结算一批，游戏就前进一个回合，点得再快也不会加速。跑步的回合带来数据豆和探险步数，休息的回合带来梦露。种菜、盖房子、派 Squeektoshi 去探险，再和所有玩家一起挑战每周的 Boss。连接 Sepolia 测试网钱包后，还可以质押测试网 SQK 挖 SQB、在公共小镇地图上买家园地契、给公会战送补给。
 
-这是独立社区项目，不是 SqueekChain 官方产品。只在 Sepolia 测试网运行，这里的 SQK 和 SQB 没有真实价值。
+这是独立社区项目，不是 SqueekChain 官方产品。只在 Sepolia 测试网运行，这里的 SQK 和 SQB 没有真实价值。[白皮书](https://world.squeekpulse.xyz/whitepaper/)（[English](https://world.squeekpulse.xyz/whitepaper/en/)，以中文版为准）说明了游戏的设计、回合机制、双币经济、合约和风险。
 
 ![world.squeekpulse.xyz 上的 Squeek Pet World：独立的顶栏、正在休息的真实仓鼠，真实世界请玩家连接钱包](docs/screenshots/world.png)
 
@@ -37,6 +37,8 @@ src/           游戏本体（TypeScript）：规则数据、回合引擎、结�
 src/world/chain/   上链部分：读链、钱包、permit 签名、交易和错误提示
 site/          包住游戏的网站：页面（顶栏、实时仓鼠、页脚）、样式、字体和小图、
                响应头（site/public/）、网站自己的测试和构建
+site/whitepaper/   白皮书的两份原稿（zh.md 为准，en.md）和生成器，生成的网页在
+               site/public/whitepaper/
 contracts/     SQB 代币、铸币合约、World 商店和 SQK 水龙头（Solidity、Hardhat）、
                合约测试和部署页，见 contracts/README.md
 tests/         游戏的测试（Vitest）
@@ -60,6 +62,8 @@ npm run preview    # 构建后用 Cloudflare 的本地 Pages 服务器预览 dis
 `npm run build:game` 把 `src/world` 打包成一个脚本 `dist-game/squeek-world.js`，它的 `mountWorld(element, { language, chain })` 在元素的 shadow root 里画出游戏，页面样式和游戏样式互不干扰。`site/build.mjs` 把它和页面（`site/src/world-page.js`）打包在一起，复制 `site/public/`、字体和小图，输出到 `dist/`。脚本第一行注释写着它是从哪个提交构建的，部署后的 `world.js` 末尾也保留这一行，可以直接看出线上是哪个版本。
 
 `chain` 是部署页输出的 World 配置：合约地址和一个公共 Sepolia 节点。网站用的那份在 `site/src/world-chain.js`；设成 `null` 时，World 就是只读游戏。
+
+白皮书写在 `site/whitepaper/zh.md` 和 `en.md` 里，两份的章节、小节、表格和图保持一致。改了任何一份，都要运行 `node site/whitepaper/render.mjs`：它把两张静态网页 `/whitepaper/` 和 `/whitepaper/en/` 写进 `site/public/whitepaper/`。把它们和原稿一起提交；网页没更新时，`site/tests/whitepaper.test.js` 会失败。
 
 合约是单独的一个包：`cd contracts && npm ci && npm test`。在本地 Sepolia 分叉上玩链上 World 的方法见 [contracts/README.md](contracts/README.md)。
 

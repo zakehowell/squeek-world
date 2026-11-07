@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 import { liveState, copyFor, pageHtml, liveHtml, readLanguage } from "../src/world-page.js";
 import { WORLD_CHAIN } from "../src/world-chain.js";
 import { pixelIcon } from "../src/pixel-icons.js";
+import { PAGE_FILE, PAGE_PATH } from "../whitepaper/render.mjs";
 
 const NOW = Date.parse("2026-11-06T05:00:00Z");
 const reading = (fields = {}) => ({
@@ -88,6 +89,18 @@ test("the World is a page of its own: its own top bar, no Squeek Pulse sidebar, 
       assert.deepEqual(away, ["https://squeekpulse.xyz/"], "one link to squeekpulse.xyz");
       assert.match(html, /<a href="https:\/\/squeekpulse\.xyz\/">[^<]+ ↗<\/a><\/footer><\/main><\/div>$/, "in the footer, to the main site's entry page");
     }
+  }
+});
+
+test("the top bar and the footer open the whitepaper in the page's language", () => {
+  for (const lang of ["en", "zh"]) {
+    const html = pageHtml(lang, { chain: CHAIN });
+    const links = [...html.matchAll(/<a href="(\/whitepaper\/[^"]*)"[^>]*>([^<]+)<\/a>/g)].map((m) => m.slice(1, 3));
+    const link = [PAGE_PATH[lang], copyFor(lang).whitepaper];
+    assert.deepEqual(links, [link, link]);
+    assert.match(html, new RegExp(`<a href="${PAGE_PATH[lang]}" class="top-doc world-paper">`), "beside Docs in the top bar, which a phone hides");
+    assert.match(html, new RegExp(`</p><a href="${PAGE_PATH[lang]}">[^<]+</a><a href="https://squeekpulse\\.xyz/">`), "in the footer, before the link back");
+    assert.ok(readFileSync(new URL(`../${PAGE_FILE[lang]}`, import.meta.url), "utf8").includes(`<link rel="canonical" href="https://world.squeekpulse.xyz${PAGE_PATH[lang]}" />`));
   }
 });
 
