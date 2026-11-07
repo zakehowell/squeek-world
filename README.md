@@ -82,6 +82,12 @@ Cloudflare keeps every deployment, and any of them can be restored from the dash
 - Nothing here handles private keys, signs anything by itself or sends a transaction on its own. Every transaction and signature is confirmed in the player's own wallet, found through EIP-6963; transactions are simulated first, and approvals use one-off signed permits where the wallet supports them. `site/tests/world-page.test.js` checks the built game asks the wallet for nothing else and reads no other host.
 - No accounts, analytics or personal data. Saves stay in the browser, one world per wallet.
 
+## SqueekChain project
+
+This repository is the project `543908d3-0cc8-4811-967b-8efb5e928cfd` on SqueekChain. The line below is the ownership record SqueekChain rechecks every day; keep it public:
+
+squeekchain-project: 543908d3-0cc8-4811-967b-8efb5e928cfd
+
 ## License
 
 MIT ([LICENSE](LICENSE)). Fonts, the SqueekChain deployment record and the art: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
